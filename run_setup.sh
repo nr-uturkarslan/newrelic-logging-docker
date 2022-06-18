@@ -31,10 +31,7 @@ newrelicLoggingAgentName="newrelic-logging-agent"
 randomLoggerName="random-logger"
 
 # Install docker on host machine
-./01_docker/01_install_docker.sh
-
-# Create directory for New Relic
-mkdir newrelic
+sudo bash ./01_docker/01_install_docker.sh
 
 # Build New Relic logging image
 sudo docker build \
@@ -51,13 +48,10 @@ sudo docker run \
   -p 24224:24224 \
   $newrelicLoggingAgentName
 
-# Create directory for random logger
-mkdir random-logger
-
 # Build random logger image
 sudo docker build \
   --tag $randomLoggerName \
-  ./random-logger
+  ./03_random_logger
 
 # Start random logger
 sudo docker run \
